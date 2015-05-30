@@ -21,8 +21,21 @@ def brute_force_search(text_path, patch_path):
 			break
 	return found
 
+# my own asserts <3
+assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt'))
+assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt'))
+assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt'))
+assert(not brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt'))
 
-assert(brute_force_search('neil_gaiman.txt', 'neil_gaiman_patch1.txt'))
-assert(brute_force_search('neil_gaiman.txt', 'neil_gaiman_patch2.txt'))
-assert(brute_force_search('neil_gaiman.txt', 'neil_gaiman_patch3.txt'))
-assert(not brute_force_search('neil_gaiman.txt', 'neil_gaiman_not_a_patch.txt'))
+#teacher asserts
+assert(brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt'))
+assert(brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt'))
+assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt'))
+assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt'))
+assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt'))
+
+assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt'))
+assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt'))
+assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt'))
+assert(not brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt'))
+assert(not brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt'))
