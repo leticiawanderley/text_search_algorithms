@@ -1,7 +1,8 @@
-def brute_force_search(text_path, patch_path):
-	text = open(text_path, 'r')
-	patch = open(patch_path, 'r')
+from text_opener import text_opener
 
+def brute_force_search(texts):
+	text = texts[0]
+	patch = texts[1]
 	patch_first_line = patch.readline().strip('\n')
 	text_lines = text.read().split('\n')
 	patch_lines = patch.read().split('\n')
@@ -22,20 +23,20 @@ def brute_force_search(text_path, patch_path):
 	return found
 
 # my own asserts <3
-assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt'))
-assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt'))
-assert(brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt'))
-assert(not brute_force_search('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt'))
+assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt')))
+assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt')))
+assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt')))
+assert(not brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt')))
 
 #teacher asserts
-assert(brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt'))
-assert(brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt'))
-assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt'))
-assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt'))
-assert(brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt'))
+assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt')))
+assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt')))
+assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt')))
+assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt')))
+assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt')))
 
-assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt'))
-assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt'))
-assert(not brute_force_search('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt'))
-assert(not brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt'))
-assert(not brute_force_search('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt'))
+assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt')))
+assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt')))
+assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt')))
+assert(not brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt')))
+assert(not brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt')))
