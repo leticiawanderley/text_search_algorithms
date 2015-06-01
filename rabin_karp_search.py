@@ -7,26 +7,25 @@ def rabin_karp_search(texts):
 	text_len = len(text)
 	patch_len = len(patch)
 	modulator = 11
-	multiplier = 11
+	multiplier = 101
 	
 	text_hash = 0
 	patch_hash = 0
 
 	for ind in range(patch_len):
 		power = patch_len - 1 - ind
-		text_hash += pow(multiplier, power) * ord(text[ind])
-		patch_hash += pow(multiplier, power) * ord(patch[ind])
+		text_hash += (multiplier**power) * ord(text[ind])
+		patch_hash += (multiplier**power) * ord(patch[ind])
 
 	found = False
-	for index in range(text_len - patch_len + 1):
+	for index in range(text_len - patch_len):
 		if patch_hash == text_hash:
 			found = True
 			if patch != text[index:index + patch_len]:
 				found = False 
 		if found:
 			break
-		text_hash = (multiplier * (text_hash - ord(text[index]) * pow(multiplier, patch_len - 1)))
-		text_hash += ord(text[index + patch_len - 1]) 
+		text_hash = (multiplier * (text_hash - (ord(text[index]) * (multiplier**(patch_len - 1))))) + ord(text[index + patch_len]) 
 	return found
 
 # my own asserts <3
