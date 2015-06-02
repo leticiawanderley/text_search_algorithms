@@ -3,21 +3,20 @@ from text_opener import text_opener
 def brute_force_search(texts):
 	text = texts[0]
 	patch = texts[1]
-	patch_first_line = patch.readline().strip('\n')
-	text_lines = text.read().split('\n')
-	patch_lines = patch.read().split('\n')
 	
+	text = texts[0].read().strip('\n')
+	patch = texts[1].read().strip('\n')
+	patch_first_char = patch[0]
 	found = False	
-	for line_number in range(len(text_lines)):
-		line = text_lines[line_number]
-		if patch_first_line in line:
-			index = line_number + 1
-			found = True
-			for patch_line_number in range(len(patch_lines)):
-				if patch_lines[patch_line_number] not in text_lines[index]:
-					found = False
-					break
-				index += 1
+	for char_number in range(len(text)):
+		char = text[char_number]
+		index = char_number
+		found = True
+		for patch_char_number in range(len(patch)):
+			if patch[patch_char_number] != text[index]:
+				found = False
+				break
+			index += 1
 		if found:
 			break
 	return found
