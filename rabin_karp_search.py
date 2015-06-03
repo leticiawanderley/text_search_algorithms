@@ -1,6 +1,7 @@
 from text_opener import text_opener
 
-#based on http://stackoverflow.com/questions/22216948/python-rabin-karp-algorithm-hashing
+#based upon http://stackoverflow.com/questions/22216948/python-rabin-karp-algorithm-hashing
+#and https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
 def rabin_karp_search(texts):
 	text = texts[0].read().strip('\n')
 	patch = texts[1].read().strip('\n')
