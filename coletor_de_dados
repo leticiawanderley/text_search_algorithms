@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-chmod a+x 
 technique=$1
 patch_path=$2
 text_path=$3

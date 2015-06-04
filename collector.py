@@ -6,7 +6,7 @@ class Collector:
     
     def start_profile(self):
         self.PID = os.getpid()
-        os.system("python3 profiler.py " + str(self.PID) + "&")
+        os.system("python profiler.py " + str(self.PID) + "&")
         time.sleep(3);
         self.start_time = time.clock()
     
