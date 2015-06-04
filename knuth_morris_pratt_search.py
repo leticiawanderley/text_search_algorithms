@@ -2,6 +2,7 @@ from text_opener import text_opener
 
 #based upon http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
 def knuth_morris_pratt_search(texts):
+	operation_count = 0
 	text = texts[0].read().strip('\n')
 	patch = texts[1].read().strip('\n')
 
@@ -23,9 +24,10 @@ def knuth_morris_pratt_search(texts):
 	size_found = 0
 	text_index = 0
 	while text_index + size_found < len(text): 
+		operation_count += 1
 		if patch[size_found] == text[size_found + text_index]:
 			if size_found == len(patch) - 1:
-				return True
+				return (True, operation_count)
 			size_found += 1
 		else:
 			if shifts[size_found] > -1:
@@ -34,23 +36,4 @@ def knuth_morris_pratt_search(texts):
 			else:
 				size_found = 0
 				text_index += 1
-	return False		
-		
-# my own asserts <3
-assert(knuth_morris_pratt_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt')))
-assert(not knuth_morris_pratt_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt')))
-
-#teacher asserts
-assert(knuth_morris_pratt_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt')))
-assert(knuth_morris_pratt_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt')))
-
-assert(not knuth_morris_pratt_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt')))
-assert(not knuth_morris_pratt_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt')))
-assert(not knuth_morris_pratt_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt')))
-assert(not knuth_morris_pratt_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt')))
-assert(not knuth_morris_pratt_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt')))
+	return (False, operation_count)		

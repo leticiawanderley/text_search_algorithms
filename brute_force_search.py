@@ -1,6 +1,7 @@
 from text_opener import text_opener
 
 def brute_force_search(texts):
+	operation_count = 0
 	text = texts[0]
 	patch = texts[1]
 	
@@ -9,6 +10,7 @@ def brute_force_search(texts):
 	patch_first_char = patch[0]
 	found = False	
 	for char_number in range(len(text)):
+		operation_count += 1
 		char = text[char_number]
 		index = char_number
 		found = True
@@ -19,23 +21,4 @@ def brute_force_search(texts):
 			index += 1
 		if found:
 			break
-	return found
-
-# my own asserts <3
-assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt')))
-assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt')))
-assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt')))
-assert(not brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt')))
-
-#teacher asserts
-assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt')))
-assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt')))
-assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt')))
-assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt')))
-assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt')))
-
-assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt')))
-assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt')))
-assert(not brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt')))
-assert(not brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt')))
-assert(not brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt')))
+	return (found, operation_count)

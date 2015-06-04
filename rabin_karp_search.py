@@ -3,6 +3,7 @@ from text_opener import text_opener
 #based upon http://stackoverflow.com/questions/22216948/python-rabin-karp-algorithm-hashing
 #and https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
 def rabin_karp_search(texts):
+	operation_count = 0
 	text = texts[0].read().strip('\n')
 	patch = texts[1].read().strip('\n')
 	text_len = len(text)
@@ -21,6 +22,7 @@ def rabin_karp_search(texts):
 		
 	found = False
 	for index in range(text_len - patch_len):
+		operation_count += 1
 		if patch_hash == text_hash:
 			found = True
 			if patch != text[index:index + patch_len]:
@@ -42,23 +44,5 @@ def rabin_karp_search(texts):
 		found = True
 		if patch != text[index:index + patch_len]:
 			found = False
-	return found
+	return (found, operation_count)
 
-# my own asserts <3
-assert(rabin_karp_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch1.txt')))
-assert(rabin_karp_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch2.txt')))
-assert(rabin_karp_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt')))
-assert(not rabin_karp_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt')))
-
-# #teacher asserts
-assert(rabin_karp_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt')))
-assert(rabin_karp_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt')))
-assert(rabin_karp_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt')))
-assert(rabin_karp_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra3.txt')))
-assert(rabin_karp_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra5.txt')))
-
-assert(not rabin_karp_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra3.txt')))
-assert(not rabin_karp_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra2.txt')))
-assert(not rabin_karp_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra5.txt')))
-assert(not rabin_karp_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra1.txt')))
-assert(not rabin_karp_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra4.txt')))
