@@ -10,6 +10,7 @@ def knuth_morris_pratt_search(texts):
 	shifts = [1] * (len(patch) + 1)
 	shifts[0] = -1
 	shifts[1] = 0
+	#building the 'partial match' table
 	while index < len(patch):
 		if patch[index - 1] == patch[patch_char]:
 			patch_char += 1
