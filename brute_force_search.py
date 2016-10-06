@@ -27,7 +27,7 @@ assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'reso
 assert(brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_patch3.txt')))
 assert(not brute_force_search(text_opener('resources/samples/neil_gaiman.txt', 'resources/samples/neil_gaiman_not_a_patch.txt')))
 
-#teacher asserts
+# teacher asserts
 assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra1.txt')))
 assert(brute_force_search(text_opener('resources/textos/texto1.txt', 'resources/palavras/palavra4.txt')))
 assert(brute_force_search(text_opener('resources/textos/texto2.txt', 'resources/palavras/palavra2.txt')))
