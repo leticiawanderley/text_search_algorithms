@@ -45,4 +45,3 @@ def rabin_karp_search(texts):
 		if patch != text[index:index + patch_len]:
 			found = False
 	return (found, operation_count)
-
